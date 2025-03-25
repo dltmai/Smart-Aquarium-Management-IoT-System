@@ -48,6 +48,7 @@ fun SmartAquariumApp() {
         Box(modifier = Modifier.padding(paddingValues)) {
             when (selectedTab) {
                 0 -> SensorScreen()
+                1 -> AIRecommendScreen()
 
             }
         }
@@ -76,6 +77,30 @@ fun BottomNavigationBar(selectedTab: Int, onTabSelected: (Int) -> Unit) {
             selected = selectedTab == 2,
             onClick = { onTabSelected(2) }
         )
+    }
+}
+
+@Composable
+fun AIRecommendScreen() {
+    var fishName by remember { mutableStateOf("") }
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp)
+    ) {
+        Text("AI Recommend", style = MaterialTheme.typography.headlineSmall)
+        OutlinedTextField(
+            value = fishName,
+            onValueChange = { fishName = it },
+            label = { Text("Enter fish name") },
+            modifier = Modifier.fillMaxWidth()
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+        Text("Ideal conditions for $fishName:", style = MaterialTheme.typography.bodyLarge)
+        Text("• Temperature: 22-28°C")
+        Text("• pH: 6.5-7.5")
+        Text("• TDS: 200-400 ppm")
     }
 }
 
