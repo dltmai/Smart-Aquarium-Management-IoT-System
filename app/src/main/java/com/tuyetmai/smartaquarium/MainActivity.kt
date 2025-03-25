@@ -49,7 +49,7 @@ fun SmartAquariumApp() {
             when (selectedTab) {
                 0 -> SensorScreen()
                 1 -> AIRecommendScreen()
-
+                2 -> HistoryLogScreen()
             }
         }
     }
@@ -79,7 +79,6 @@ fun BottomNavigationBar(selectedTab: Int, onTabSelected: (Int) -> Unit) {
         )
     }
 }
-
 @Composable
 fun AIRecommendScreen() {
     var fishName by remember { mutableStateOf("") }
@@ -104,6 +103,20 @@ fun AIRecommendScreen() {
     }
 }
 
+@Composable
+fun HistoryLogScreen() {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp)
+    ) {
+        Text("History Log", style = MaterialTheme.typography.headlineSmall)
+        Text("Past sensor readings will be displayed here...")
+    }
+}
+
+
 
 
 @Composable
@@ -120,7 +133,6 @@ fun SensorScreen() {
         SensorCard(title = "TDS", value = "500 ppm")
     }
 }
-
 
 @Composable
 fun SensorCard(title: String, value: String) {
